@@ -31,4 +31,19 @@ const userGetRate = async (req, res) => {
   }
 };
 
-export { userGetLike, userGetRate };
+const userCreateLike = async (req, res) => {
+  try {
+    let { user_id, res_id, date_like } = req.body;
+    let newData = {
+      user_id,
+      res_id,
+      date_like,
+    };
+    await conn.like_res.create(newData);
+    res.send(`userCreateLike successful`);
+  } catch (e) {
+    res.send(`userCreateLike error ${e}`);
+  }
+};
+
+export { userGetLike, userGetRate, userCreateLike };

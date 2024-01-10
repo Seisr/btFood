@@ -3,6 +3,5 @@ import { userGetLike } from "../controllers/userControllers.js";
 
 const userRoutes = express.Router();
 
-userRoutes.get("/user-get-like/:userId", userGetLike);
-
+userRoutes.get("/user-get-like-onId/:userId", userGetLike);
 export default userRoutes;

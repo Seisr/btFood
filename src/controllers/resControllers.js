@@ -18,4 +18,18 @@ const resGetLike = async (req, res) => {
   }
 };
 
-export { resGetLike };
+const resGetRate = async (req, res) => {
+  try {
+    let { resId } = req.params;
+    let data = await conn.rate_res.findAll({
+      where: {
+        res_id: resId,
+      },
+    });
+    res.send(data);
+  } catch (e) {
+    res.send(`resGetRate error ${e}`);
+  }
+};
+
+export { resGetLike, resGetRate };

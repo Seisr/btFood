@@ -77,10 +77,29 @@ const userCreateRate = async (req, res) => {
   }
 };
 
+const userCreateOrders = async (req, res) => {
+  try {
+    let { user_id, food_id, amount, codes, arr_sub_id } = req.body;
+    console.log(codes);
+    let newData = {
+      user_id: user_id,
+      food_id: food_id,
+      amount: amount,
+      codes: codes,
+      arr_sub_id: arr_sub_id,
+    };
+    await conn.orders.create(newData);
+    res.send(`userCreateOrders successful`);
+  } catch (e) {
+    res.send(`userCreateOrder error ${e}`);
+  }
+};
+
 export {
   userGetLike,
   userGetRate,
   userCreateLike,
   userDeleteLike,
   userCreateRate,
+  userCreateOrders,
 };

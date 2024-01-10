@@ -25,7 +25,6 @@ export default class like_res extends Model {
       allowNull: true
     },
     like_res_id: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -37,6 +36,14 @@ export default class like_res extends Model {
     indexes: [
       {
         name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "like_res_id" },
+        ]
+      },
+      {
+        name: "like_res_id",
         unique: true,
         using: "BTREE",
         fields: [

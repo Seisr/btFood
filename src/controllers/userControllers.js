@@ -61,4 +61,26 @@ const userDeleteLike = async (req, res) => {
   }
 };
 
-export { userGetLike, userGetRate, userCreateLike, userDeleteLike };
+const userCreateRate = async (req, res) => {
+  try {
+    let { user_id, res_id, amount, date_rate } = req.body;
+    let newData = {
+      user_id: user_id,
+      res_id: res_id,
+      amount: amount,
+      date_rate: date_rate,
+    };
+    await conn.rate_res.create(newData);
+    res.send(`userCreateRate successful`);
+  } catch (e) {
+    res.send(`userCreateRate error ${e}`);
+  }
+};
+
+export {
+  userGetLike,
+  userGetRate,
+  userCreateLike,
+  userDeleteLike,
+  userCreateRate,
+};

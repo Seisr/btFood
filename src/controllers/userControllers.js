@@ -46,4 +46,19 @@ const userCreateLike = async (req, res) => {
   }
 };
 
-export { userGetLike, userGetRate, userCreateLike };
+const userDeleteLike = async (req, res) => {
+  try {
+    let { userId, resId } = req.params;
+    await conn.like_res.destroy({
+      where: {
+        user_id: userId,
+        res_id: resId,
+      },
+    });
+    res.send(`userDeleteLike successful`);
+  } catch (e) {
+    res.send(`userDeleteLike error ${e}`);
+  }
+};
+
+export { userGetLike, userGetRate, userCreateLike, userDeleteLike };

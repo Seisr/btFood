@@ -1,22 +1,23 @@
-var DataTypes = require("sequelize").DataTypes;
-var _food = require("./food");
-var _food_type = require("./food_type");
-var _like_res = require("./like_res");
-var _orders = require("./orders");
-var _rate_res = require("./rate_res");
-var _restaurant = require("./restaurant");
-var _sub_food = require("./sub_food");
-var _users = require("./users");
+import _sequelize from "sequelize";
+const DataTypes = _sequelize.DataTypes;
+import _food from  "./food.js";
+import _food_type from  "./food_type.js";
+import _like_res from  "./like_res.js";
+import _orders from  "./orders.js";
+import _rate_res from  "./rate_res.js";
+import _restaurant from  "./restaurant.js";
+import _sub_food from  "./sub_food.js";
+import _users from  "./users.js";
 
-function initModels(sequelize) {
-  var food = _food(sequelize, DataTypes);
-  var food_type = _food_type(sequelize, DataTypes);
-  var like_res = _like_res(sequelize, DataTypes);
-  var orders = _orders(sequelize, DataTypes);
-  var rate_res = _rate_res(sequelize, DataTypes);
-  var restaurant = _restaurant(sequelize, DataTypes);
-  var sub_food = _sub_food(sequelize, DataTypes);
-  var users = _users(sequelize, DataTypes);
+export default function initModels(sequelize) {
+  const food = _food.init(sequelize, DataTypes);
+  const food_type = _food_type.init(sequelize, DataTypes);
+  const like_res = _like_res.init(sequelize, DataTypes);
+  const orders = _orders.init(sequelize, DataTypes);
+  const rate_res = _rate_res.init(sequelize, DataTypes);
+  const restaurant = _restaurant.init(sequelize, DataTypes);
+  const sub_food = _sub_food.init(sequelize, DataTypes);
+  const users = _users.init(sequelize, DataTypes);
 
   orders.belongsTo(food, { as: "food", foreignKey: "food_id"});
   food.hasMany(orders, { as: "orders", foreignKey: "food_id"});
@@ -46,6 +47,3 @@ function initModels(sequelize) {
     users,
   };
 }
-module.exports = initModels;
-module.exports.initModels = initModels;
-module.exports.default = initModels;

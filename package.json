@@ -16,6 +16,6 @@
   },
   "scripts":{
     "start": "nodemon index.js",
-    "sqlpull": "npx sequelize-auto -h localhost -d node38_food -u root -x 12041994 -p 3306 --dialect mysql -o src/models -l esm "
+    "sqlpull": "yarn sequelize-auto -h localhost -d node38_food -u root -x 12041994 -p 3306 --dialect mysql -o src/models -l esm"
   }
 }

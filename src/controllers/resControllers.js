@@ -6,8 +6,12 @@ const conn = initModels(sequelize);
 
 const resGetLike = async (req, res) => {
   try {
-    let { res } = req.params;
-    let data = await conn.like_res.findAll();
+    let { resId } = req.params;
+    let data = await conn.like_res.findAll({
+      where: {
+        res_id: resId,
+      },
+    });
     res.send(data);
   } catch (e) {
     res.send(`resGetLike error ${e}`);
